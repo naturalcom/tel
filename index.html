@@ -1,0 +1,112 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Telegram</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="css/detect.js"></script>
+
+    <meta property="al:ios:app_store_id" content="686449807">
+    <meta property="al:ios:app_name" content="Telegram Messenger">
+   
+
+    <meta property="al:android:url" content="">
+    <meta property="al:android:app_name" content="Telegram">
+   
+
+
+	
+
+
+
+]
+
+
+
+  </head>
+
+<style>
+.header{padding: 10px;}
+.avatar{width: 110px;height: 110px;border-radius: 61px;}
+h1{font-size: 30px;margin-top: 10px;font-weight: 900;}
+.lead{max-width: 340px;margin: 0px auto 20px auto;font-size: 19px;font-weight: 500;}
+.jumbotron{padding: 20px 10px 10px 10px;}
+</style>
+
+  <body>
+
+<!--
+
+  Функционал:
+  - 2 кнопки - открыть телеграм и скачать телеграм
+  - Ссылка на скачивание динамичная в зависимости от ОС, чтобы не было лишних кликов
+  - Ссылка на скачивание открывается в новой вкладке
+  - При клике на открыть телеграм срабатывает событие в метрику и в ФБ
+  - При клике на скачать телеграм срабатывает событие в метрику (для анализа)
+  - Можно задавать кастомный текст и аватарку
+
+  Что заменить:
+  - Аватарка
+  - Название
+  - Описание
+  - Deeplink на канал
+
+  - Пиксель ФБ
+  - Событие на синюю кнопку
+  - Метрика
+  - Цели метрики на 2 кнопки
+  
+  - Если ваш канал с ссылкой приглашения, то она должна выглядеть следующим образом: tg://join?invite=AAAAAFGSLJ-U-pswwk5NyQ
+  - Если вам нужна ссылка просто на Telegram домен, то ссылка вида: tg://resolve?domain=karmandiscount
+  
+
+
+
+-->
+
+  <div class="header">
+    <img src="img/LogoBig_1x.png" alt="">
+  </div>
+  
+      <section class="jumbotron text-center">
+        <div class="container">
+          <img class="avatar" src="img/cparip.png">
+          <!-- Заголовок канала -->
+          <h1 class="jumbotron-heading">Overclocking</h1>
+          <!-- Описание, укажите здесь то, что замотивирует человека подписаться -->
+          <p style="display:block" class="lead text-muted">¡Caminar con confianza hacia la independencia financiera!💪🤑</p>
+          <p>
+            <a href="https://telegram.org/" class="btn btn-primary my-2" onclick="fbq('track', 'Lead');">
+              Ir a Telegram
+            </a>
+            <a id="dlink" href="https://telegram.org/" class="btn btn-secondary my-2" target="_blank" onclick="return true;">
+              No tengo Telegram
+            </a>
+          </p>
+        </div>
+      </section>
+
+
+<script type="text/javascript">
+  var user = detect.parse(navigator.userAgent);
+  dlink = "https://telegram.org/";
+  if (user.os.family == "iOS") {dlink = 'https://itunes.apple.com/ru/app/telegram-messenger/id686449807?mt=8'}             
+  if (user.os.family == "Android") {dlink = 'market://details?id=org.telegram.messenger'}
+  document.getElementById("dlink").setAttribute("href", dlink);
+</script>
+<!-- Пиксель Facebook -->
+    <script type="text/javascript">
+        var url = "tg://resolve?domain=go1million";
+
+        setTimeout(function() {
+		    fbq('track', 'Lead');
+            window.location = url;			
+        }, 500);
+    </script>
+
+  </body>
+
+</html>
